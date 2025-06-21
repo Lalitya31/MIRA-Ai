@@ -33,8 +33,7 @@ Unlike traditional mental health bots, MIRA doesn’t just respond — she refle
 ## 🌐 How It Works
 
 🔗 **Public Webhook URL**:  
-https://lalitya31.app.n8n.cloud/webhook-test/35c7b0d2-085b-4c6f-a904-033d0524793c
-
+https://lalitya31.app.n8n.cloud/workflow/V5PgMKzRGM4Bb5zl
 
 📨 You send a message (like “I feel stuck”)  
 MIRA responds with:
