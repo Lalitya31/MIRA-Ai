@@ -1,40 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <title>MIRA – Journaling Agent</title>
     <style>
       body {
         font-family: 'IBM Plex Sans', sans-serif;
         background: #fdf6f0;
-        padding: 2rem;
         color: #2D3142;
         max-width: 600px;
         margin: auto;
+        padding: 2rem;
       }
       h1 {
         font-family: 'Playfair Display', serif;
         font-size: 2.2rem;
         margin-bottom: 1rem;
+        color: #5E548E;
       }
       input, button {
-        padding: 0.8rem;
-        font-size: 1rem;
         width: 100%;
-        margin-bottom: 1rem;
+        font-size: 1rem;
+        padding: 0.8rem;
         border-radius: 8px;
+        margin-bottom: 1rem;
         border: 1px solid #ccc;
       }
       button {
         background-color: #cbbacb;
-        border: none;
         color: white;
+        border: none;
         cursor: pointer;
       }
-      #output {
-        background: #fff;
+      .output-card {
+        background: #f3f3f3;
         padding: 1rem;
+        margin-top: 1rem;
+        border-left: 5px solid #cbbacb;
         border-radius: 8px;
-        box-shadow: 0 0 10px #e6e6e6;
         white-space: pre-line;
       }
     </style>
@@ -43,21 +46,28 @@
     <h1>🌙 MIRA</h1>
     <input id="msg" placeholder="How are you feeling today?" />
     <button onclick="reflect()">Reflect 🌱</button>
-    <div id="output"></div>
+
+    <div id="reflection" class="output-card"></div>
+    <div id="affirmation" class="output-card"></div>
 
     <script>
       function reflect() {
         const message = document.getElementById('msg').value;
-        fetch(`https://lalitya31.app.n8n.cloud/webhook-test/35c7b0d2-085b-4c6f-a904-033d0524793c?message=${encodeURIComponent(message)}`)
+        fetch(`https://lalitya31.app.n8n.cloud/webhook/35c7b0d2-085b-4c6f-a904-033d0524793c?message=${encodeURIComponent(message)}`)
           .then(res => res.json())
           .then(data => {
-            document.getElementById('output').innerText = 
-              `${data.reflection}\n${data.affirmation}`;
+            document.getElementById("reflection").innerText = data.reflection || "No reflection generated.";
+            document.getElementById("affirmation").innerText = data.affirmation || "No affirmation generated.";
           })
           .catch(err => {
-            document.getElementById('output').innerText = "Please check the other files of the repository and the read me file for the output , following FIGMA prototype has also been attached with the same.";
+            document.getElementById("reflection").innerText = "";
+            document.getElementById("affirmation").innerText = "MIRA is sleeping right now 😴";
           });
       }
+    </script>
+  </body>
+</html>
+
     </script>
   </body>
 </html>
